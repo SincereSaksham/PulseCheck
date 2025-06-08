@@ -8,6 +8,12 @@
     <div class="mb-2">
       <h5 class="mb-1">Welcome, {{ current_user.name }}</h5>
       <a href="{{ url_for('invite') }}" class="btn btn-sm btn-primary">Invite Teammates</a>
+      {% if current_user.id == current_user.team.creator_id %}
+        <form action="{{ url_for('delete_team') }}" method="POST" onsubmit="return confirm('Are you sure you want to delete the team? This cannot be undone.')">
+          <button type="submit" class="btn btn-sm btn-outline-danger mt-2">Delete Team</button>
+        </form>
+      {% endif %}
+
     </div>
 
     <!-- Right: Team Info and Rename Form -->
